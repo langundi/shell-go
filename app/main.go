@@ -52,7 +52,7 @@ func main() {
 				break
 			}
 
-			exec.Command(arr[0])
+			exec.Command(arr[0], arr[1], arr[2])
 
 			// fmt.Println(command, "is", path)
 			// fmt.Println(command + ": command not found")
