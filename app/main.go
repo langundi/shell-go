@@ -7,10 +7,13 @@ import (
 )
 
 func main() {
+	reader := bufio.NewReader(os.Stdin)
+
 	for {
 		fmt.Print("$ ")
 
-		command, err := bufio.NewReader(os.Stdin).ReadString('\n')
+		// Wait for user input
+		command, err := reader.ReadString('\n')
 		if err != nil {
 			fmt.Fprintln(os.Stderr, "Error reading input:", err)
 			os.Exit(1)
