@@ -40,6 +40,9 @@ func main() {
 				os.Exit(0)
 			case "echo":
 				fmt.Println(command[5:])
+			case "pwd":
+				path, _ := os.Getwd()
+				fmt.Println(path)
 			case "type":
 				switch fields[1] {
 				case "exit", "echo", "type", "pwd":
