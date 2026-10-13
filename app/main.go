@@ -19,9 +19,12 @@ func main() {
 			fmt.Fprintln(os.Stderr, "Error reading input:", err)
 			os.Exit(1)
 		}
-
-		// Exit
 		command = strings.TrimSpace(command)
+
+		if strings.HasPrefix(command, "echo ") {
+			fmt.Println(command[5:])
+		}
+
 		if command == "exit" {
 			break
 		}
