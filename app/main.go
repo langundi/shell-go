@@ -11,6 +11,7 @@ import (
 
 var builtInCommands = []string{
 	"echo",
+	"pwd",
 	"type",
 	"exit",
 }
