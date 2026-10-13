@@ -51,6 +51,10 @@ func main() {
 				_, err := os.Stat(dir)
 				if err != nil {
 					fmt.Println("cd: " + fields[1] + ": No such file or directory")
+					break
+				}
+				if err := os.Chdir(dir); err != nil {
+					fmt.Println("cd: " + fields[1] + ": No such file or directory")
 				}
 			case "type":
 				switch fields[1] {
