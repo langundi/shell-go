@@ -43,7 +43,7 @@ func main() {
 			case "type":
 				switch fields[1] {
 				case "exit", "echo", "type":
-					fmt.Println(command, "is a shell builtin")
+					fmt.Println(fields[1], "is a shell builtin")
 				default:
 					path, err := exec.LookPath(fields[1])
 					if err != nil {
