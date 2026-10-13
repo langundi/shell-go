@@ -43,17 +43,13 @@ func main() {
 				}
 				fmt.Println(command, "is", path)
 			}
-		} else if strings.HasPrefix(command, "exec ") {
-			command = strings.TrimPrefix(command, "exec ")
-			command = strings.TrimSpace(command)
-
+		} else {
 			path, err := exec.LookPath(command)
 			if err != nil {
 				fmt.Println(command + ": not found")
 				break
 			}
 			fmt.Println(command, "is", path)
-		} else {
 			fmt.Println(command + ": command not found")
 		}
 	}
