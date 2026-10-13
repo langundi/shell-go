@@ -26,7 +26,9 @@ func main() {
 			break
 		}
 
-		if strings.HasPrefix(command, "type ") {
+		if strings.HasPrefix(command, "echo ") {
+			fmt.Println(command[5:])
+		} else if strings.HasPrefix(command, "type ") {
 			command = strings.TrimPrefix(command, "type ")
 			command = strings.TrimSpace(command)
 
@@ -41,8 +43,16 @@ func main() {
 				}
 				fmt.Println(command, "is", path)
 			}
-		} else if strings.HasPrefix(command, "echo ") {
-			fmt.Println(command[5:])
+		} else if strings.HasPrefix(command, "exec ") {
+			command = strings.TrimPrefix(command, "exec ")
+			command = strings.TrimSpace(command)
+
+			path, err := exec.LookPath(command)
+			if err != nil {
+				fmt.Println(command + ": not found")
+				break
+			}
+			fmt.Println(command, "is", path)
 		} else {
 			fmt.Println(command + ": command not found")
 		}
