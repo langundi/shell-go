@@ -42,7 +42,7 @@ func main() {
 				fmt.Println(command[5:])
 			case "type":
 				switch fields[1] {
-				case "exit", "echo", "type":
+				case "exit", "echo", "type", "pwd":
 					fmt.Println(fields[1], "is a shell builtin")
 				default:
 					result, err := checkPath(fields[1])
@@ -69,5 +69,5 @@ func checkPath(field string) (string, error) {
 	if err != nil {
 		return field + ": not found", err
 	}
-	return fmt.Sprintf(field, "is", path), nil
+	return fmt.Sprintf("%s is %s", field, path), nil
 }
