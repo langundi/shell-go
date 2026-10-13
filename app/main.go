@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
+	"path"
 	"slices"
 	"strings"
 )
@@ -46,11 +47,12 @@ func main() {
 				path, _ := os.Getwd()
 				fmt.Println(path)
 			case "cd":
-				info, err := os.Stat(fields[1])
+				dir := path.Dir(fields[1])
+				_, err := os.Stat(dir)
 				if err != nil {
 					fmt.Println("cd: " + fields[1] + ": No such file or directory")
 				}
-				if err := os.Chdir(info.Name()); err != nil {
+				if err := os.Chdir(dir); err != nil {
 					fmt.Println("cd: " + fields[1] + ": No such file or directory")
 				}
 			case "type":
