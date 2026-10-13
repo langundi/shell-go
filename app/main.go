@@ -45,12 +45,12 @@ func main() {
 				case "exit", "echo", "type":
 					fmt.Println(fields[1], "is a shell builtin")
 				default:
-					path, err := exec.LookPath(fields[1])
+					result, err := checkPath(fields[1])
 					if err != nil {
-						fmt.Println(fields[1] + ": not found")
+						fmt.Println(result)
 						break
 					}
-					fmt.Println(fields[1], "is", path)
+					fmt.Println(result)
 				}
 			}
 		} else if _, err := exec.LookPath(fields[0]); err == nil {
@@ -62,4 +62,12 @@ func main() {
 			fmt.Println(command + ": command not found")
 		}
 	}
+}
+
+func checkPath(field string) (string, error) {
+	path, err := exec.LookPath(field)
+	if err != nil {
+		return field + ": not found", err
+	}
+	return fmt.Sprintf(field, "is", path), nil
 }
