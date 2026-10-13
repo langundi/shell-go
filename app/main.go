@@ -15,20 +15,17 @@ func main() {
 
 		// User input
 		command, err := reader.ReadString('\n')
-
-		// Error handling
 		if err != nil {
 			fmt.Fprintln(os.Stderr, "Error reading input:", err)
 			os.Exit(1)
 		}
+		fmt.Println(command[:len(command)-1] + ": command not found")
 
 		// Exit
 		command = strings.TrimSpace(command)
 		if command == "exit" {
 			break
 		}
-
-		// Print
-		fmt.Println(command[:len(command)-1] + ": command not found")
+		fmt.Println(command + ": command not found")
 	}
 }
