@@ -47,6 +47,11 @@ func main() {
 				abspath, _ := os.Getwd()
 				fmt.Println(abspath)
 			case "cd":
+				if fields[1] == "~" {
+					home, _ := os.UserHomeDir()
+					os.Chdir(home)
+					break
+				}
 				dir := path.Clean(fields[1])
 				_, err := os.Stat(dir)
 				if err != nil {
