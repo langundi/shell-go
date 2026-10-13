@@ -44,10 +44,10 @@ func main() {
 			case "echo":
 				fmt.Println(command[5:])
 			case "pwd":
-				path, _ := os.Getwd()
-				fmt.Println(path)
+				abspath, _ := os.Getwd()
+				fmt.Println(abspath)
 			case "cd":
-				dir := path.Dir(fields[1])
+				dir := path.Clean(fields[1])
 				_, err := os.Stat(dir)
 				if err != nil {
 					fmt.Println("cd: " + fields[1] + ": No such file or directory")
