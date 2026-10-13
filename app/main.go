@@ -46,14 +46,16 @@ func main() {
 		} else {
 			arr := strings.Split(command, " ")
 
-			path, err := exec.LookPath(arr[0])
+			_, err := exec.LookPath(arr[0])
 			if err != nil {
 				fmt.Println(command + ": not found")
 				break
 			}
 
-			fmt.Println(command, "is", path)
-			fmt.Println(command + ": command not found")
+			exec.Command(arr[0])
+
+			// fmt.Println(command, "is", path)
+			// fmt.Println(command + ": command not found")
 		}
 	}
 }
