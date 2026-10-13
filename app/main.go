@@ -28,6 +28,7 @@ func main() {
 		if strings.HasPrefix(command, "type ") {
 			command = strings.TrimPrefix(command, "type ")
 			command = strings.TrimSpace(command)
+
 			switch command {
 			case "exit", "echo", "type":
 				fmt.Println(command, "is a shell builtin")
