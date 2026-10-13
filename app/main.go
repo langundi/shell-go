@@ -12,6 +12,7 @@ import (
 var builtInCommands = []string{
 	"echo",
 	"pwd",
+	"cd",
 	"type",
 	"exit",
 }
@@ -44,6 +45,14 @@ func main() {
 			case "pwd":
 				path, _ := os.Getwd()
 				fmt.Println(path)
+			case "cd":
+				info, err := os.Stat(fields[1])
+				if err != nil {
+					fmt.Println("cd: " + fields[1] + ": No such file or directory")
+				}
+				if err := os.Chdir(info.Name()); err != nil {
+					fmt.Println("cd: " + fields[1] + ": No such file or directory")
+				}
 			case "type":
 				switch fields[1] {
 				case "exit", "echo", "type", "pwd":
